@@ -55,7 +55,7 @@
 -has_one :item
 -has_one :address
 
-## Addressテーブル
+## addressesテーブル
 | Column           | Type      | Options                        |
 | ---------------- | --------- | ------------------------------ |
 | postal_code      | string    | null: false                    |
