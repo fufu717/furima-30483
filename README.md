@@ -1,24 +1,71 @@
-# README
+#　テーブル設計
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## usersテーブル
+| Column             | Type   | Options                   |
+| ------------------ | ------ | ------------------------- |
+| nickname           | string | null: false               |
+| email              | string | null: false, unique: true |
+| encrypted_password | string | null: false               |
+| last_name          | string | null: false               |
+| last_name_kana     | string | null: false               |
+| first_name         | string | null: false               |
+| first_name_kana    | string | null: false               |
+| birth_day          | date   | null: false               |
 
-Things you may want to cover:
+### Association
 
-* Ruby version
+-has_many : items
+-has_many : purchases
 
-* System dependencies
+## itemsテーブル
 
-* Configuration
+| Column           | Type      | Options                        |
+| ---------------- | --------- | ------------------------------ |
+| name             | string    | null: false                    |
+| user             | reference | null: false, foreign_key: true |
+| category_id      | integer   | null: false                    |
+| condition_id     | integer   | null: false                    |
+| postage_id       | integer   | null: false                    |
+| shipping_days_id | integer   | null: false                    |
+| prefecture_id    | integer   | null: false                    |
+| price            | integer   | null: false                    |
+| description      | text      | null: false                    |
 
-* Database creation
+### Association
 
-* Database initialization
+-has_one :user
+-has_one :purchase
+-has_one_attached :image
+-belongs_to_active_hash :category
+-belongs_to_active_hash :condition
+-belongs_to_active_hash :postage
+-belongs_to_active_hash :shipping_days
+-belongs_to_active_hash :prefecture
 
-* How to run the test suite
+## purchasesテーブル
 
-* Services (job queues, cache servers, search engines, etc.)
+| Column           | Type      | Options                        |
+| ---------------- | --------- | ------------------------------ |
+| item             | reference | null: false, foreign_key: true |
+| user             | reference | null: false, foreign_key: true |
 
-* Deployment instructions
+### Association
 
-* ...
+-has_one :user
+-has_one :item
+-has_one :address
+
+## addressesテーブル
+| Column           | Type      | Options                        |
+| ---------------- | --------- | ------------------------------ |
+| postal_code      | string    | null: false                    |
+| prefecture_id    | reference | null: false                    |
+| city             | string    | null: false                    |
+| address          | string    | null: false                    |
+| building         | string    |                                |
+| phone            | string    | null: false,                   |
+| purchase         | reference | null: false, foreign_key: true |
+
+### Association
+
+-has_one :purchase
