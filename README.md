@@ -59,11 +59,11 @@
 | Column           | Type      | Options                        |
 | ---------------- | --------- | ------------------------------ |
 | postal_code      | string    | null: false                    |
-| prefecture_id    | reference | null: false, foreign_key: true |
+| prefecture_id    | reference | null: false                    |
 | city             | string    | null: false                    |
 | address          | string    | null: false                    |
 | building         | string    |                                |
-| phone            | string    | null: false, unique: true      |
+| phone            | string    | null: false,                   |
 | purchase         | reference | null: false, foreign_key: true |
 
 ### Association
