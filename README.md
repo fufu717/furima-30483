@@ -1,18 +1,16 @@
 #　テーブル設計
 
 ## usersテーブル
-| Column          | Type   | Options                   |
-| --------------- | ------ | ------------------------- |
-| nickname        | string | null: false               |
-| email           | string | null: false, unique: true |
-| password        | string | null: false               |
-| last_name       | string | null: false               |
-| last_name_kana  | string | null: false               |
-| first_name      | string | null: false               |
-| first_name_kana | string | null: false               |
-| birth_year      | date   | null: false               |
-| birth_month     | date   | null: false               |
-| birth_day       | date   | null: false               |
+| Column             | Type   | Options                   |
+| ------------------ | ------ | ------------------------- |
+| nickname           | string | null: false               |
+| email              | string | null: false, unique: true |
+| encrypted_password | string | null: false               |
+| last_name          | string | null: false               |
+| last_name_kana     | string | null: false               |
+| first_name         | string | null: false               |
+| first_name_kana    | string | null: false               |
+| birth_day          | date   | null: false               |
 
 ### Association
 
@@ -31,11 +29,12 @@
 | shipping_days_id | integer   | null: false                    |
 | prefecture_id    | integer   | null: false                    |
 | price            | integer   | null: false                    |
+| description      | text      | null: false                    |
 
 ### Association
 
--belongs_to :user
--belongs_to :purchase
+-has_one :user
+-has_one :purchase
 -has_one_attached :image
 -belongs_to_active_hash :category
 -belongs_to_active_hash :condition
@@ -52,9 +51,9 @@
 
 ### Association
 
--belongs_to :user
--belongs_to :item
--belongs_to :address
+-has_one :user
+-has_one :item
+-has_one :address
 
 ## Addressテーブル
 | Column           | Type      | Options                        |
@@ -66,3 +65,7 @@
 | building         | string    |                                |
 | phone            | string    | null: false, unique: true      |
 | purchase         | reference | null: false, foreign_key: true |
+
+### Association
+
+-has_one :purchase
