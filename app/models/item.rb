@@ -9,14 +9,14 @@ class Item < ApplicationRecord
   belongs_to_active_hash :shipping_days
 
   with_options presence: true do
-  validates :image
-  validates :name
-  validates :description
-  validates :category
-  validates :condition
-  validates :postage
-  validates :prefecture
-  validates :shipping_days
-  validates :price,      format:{with:/\A[0-9]+\z/}, numericality: { only_integer: true,greater_than: 299, less_than: 10000000}
+    validates :image
+    validates :name
+    validates :description
+    validates :category
+    validates :condition
+    validates :postage
+    validates :prefecture
+    validates :shipping_days
+    validates :price, format: { with: /\A[0-9]+\z/ }, numericality: { only_integer: true, greater_than: 299, less_than: 10_000_000 }
   end
 end
