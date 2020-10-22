@@ -20,10 +20,11 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @item = Item.find(params[:id])
+
   end
 
   def edit
+    
   end
   
   def update
@@ -44,7 +45,6 @@ class ItemsController < ApplicationController
   end
 
   def move_to_index
-    @item = Item.find(params[:id])
       unless @item.user == current_user
       redirect_to action: :index
     end
