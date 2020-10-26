@@ -1,4 +1,7 @@
 class User < ApplicationRecord
+  has_many :purchase
+  has_many :item
+
   with_options presence: true do
     validates :nickname
     validates :first_name, :last_name,
@@ -9,6 +12,7 @@ class User < ApplicationRecord
                          format: { with: /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i, message: 'Include both letters and numbers' }
     validates :birth_day, presence: true
   end
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
